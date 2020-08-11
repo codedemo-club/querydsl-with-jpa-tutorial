@@ -108,7 +108,7 @@ public class StudentService {
      * 删除学生
      * @param name 姓名
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void deleteByName(String name) {
         JPAQueryFactory query = new JPAQueryFactory(entityManager);
         QStudent qStudent = QStudent.student;
