@@ -1,0 +1,13 @@
+insert into klass (id, name) values (1, 'classOne');
+insert into klass  (id, name) values (2, 'classTwo');
+insert into student (id, klass_id, name, no, weight) values (1, 1, 'zhangsan', '200001', 56);
+insert into student (id, klass_id, name, no, weight) values (2, 1, 'lisi', '200002', 60);
+insert into student (id, klass_id, name, no, weight) values (3, 2, 'wangwu', null, 65);
+insert into student (id, klass_id, name, no, weight) values (4, 1, 'zhaoliu', null, 60);
+insert into course (id, name) values (1, 'computer');
+insert into course (id, name) values (2, 'english');
+insert into student_courses (student_id, courses_id) values (1, 1);
+insert into student_courses (student_id, courses_id) values (1, 2);
+insert into student_courses (student_id, courses_id) values (2, 1);
+insert into student_courses (student_id, courses_id) values (3, 2);
+insert into student_courses (student_id, courses_id) values (4, 2);
