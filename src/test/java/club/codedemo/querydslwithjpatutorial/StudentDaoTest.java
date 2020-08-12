@@ -21,6 +21,24 @@ class StudentDaoTest {
     }
 
     @Test
+    void findByNameAndNo() {
+        Assertions.assertEquals(1L,
+                this.studentDao.findByNameAndNo("zhangsan", "200001").getId());
+    }
+
+    @Test
+    void findByNameAndNo1() {
+        Assertions.assertEquals(1L,
+                this.studentDao.findByNameAndNo1("zhangsan", "200001").getId());
+    }
+
+    @Test
+    void findByNameOrNo() {
+        Assertions.assertEquals(2,
+                this.studentDao.findByNameOrNo("zhangsan", "200002").size());
+    }
+
+    @Test
     void findAllOrderByWeight() {
         List<Student> students = this.studentDao.findAllOrderByWeight();
 
@@ -29,35 +47,15 @@ class StudentDaoTest {
     }
 
     @Test
+    void getMaxWeight() {
+        Assertions.assertEquals(65, this.studentDao.getMaxWeight());
+    }
+
+    @Test
     void groupByWeight() {
         Assertions.assertEquals(3,
                 this.studentDao.groupByWeight().size());
     }
 
-    @Test
-    void findAllByCourseName() {
-        Assertions.assertEquals(3,
-                this.studentDao.findAllByCourseName("english").size());
-    }
-
-    @Test
-    void findAllByKlassName() {
-        Assertions.assertEquals(3,
-                this.studentDao.findAllByKlassName("classOne").size());
-    }
-
-    @Test
-    void updateNoByName() {
-        this.studentDao.updateNoByName("888888", "zhangsan");
-        Assertions.assertEquals("888888",
-                this.studentDao.findByName("zhangsan").getNo());
-    }
-
-    @Test
-    @Transactional
-    void deleteByName() {
-        this.studentDao.deleteByName("zhangsan");
-        Assertions.assertNull(this.studentDao.findByName("zhangsan"));
-    }
 
 }
