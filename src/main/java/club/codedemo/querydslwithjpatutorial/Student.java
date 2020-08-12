@@ -1,10 +1,5 @@
 package club.codedemo.querydslwithjpatutorial;
-
-import com.querydsl.core.annotations.QueryEntity;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 学生
@@ -30,17 +25,6 @@ public class Student {
      */
     private Integer weight;
 
-    /**
-     * 所在班级
-     */
-    @ManyToOne
-    private Klass klass;
-
-    /**
-     * 拥有的课程
-     */
-    @ManyToMany
-    private List<Course> courses = new ArrayList<>();
 
     public Student() {
     }
@@ -81,21 +65,5 @@ public class Student {
 
     public void setWeight(Integer weight) {
         this.weight = weight;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
-    }
-
-    public Klass getKlass() {
-        return klass;
-    }
-
-    public void setKlass(Klass klass) {
-        this.klass = klass;
     }
 }

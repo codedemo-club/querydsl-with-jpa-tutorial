@@ -1,6 +1,5 @@
 package club.codedemo.querydslwithjpatutorial;
 
-import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
-public class StudentService {
+public class StudentDao {
 
     @PersistenceContext
     EntityManager entityManager;
@@ -58,35 +57,6 @@ public class StudentService {
              .fetch();
     }
 
-    /**
-     * 内联结测试
-     */
-    public List<Student> findAllByCourseName(String courseName) {
-        JPAQueryFactory query = new JPAQueryFactory(entityManager);
-        QStudent qStudent = QStudent.student;
-        QCourse qCourse = QCourse.course;
-
-        return query.selectFrom(qStudent)
-                .innerJoin(qStudent.courses, qCourse)
-                .on(qCourse.name.endsWith(courseName))
-                .fetch();
-    }
-
-    /**
-     * 子查询
-     */
-    public List<Student> findAllByKlassName(String klassName) {
-        JPAQueryFactory query = new JPAQueryFactory(entityManager);
-        QStudent qStudent = QStudent.student;
-        QKlass qKlass = QKlass.klass;
-
-        return query.selectFrom(qStudent)
-             .where(qStudent.klass.id.in(
-                     JPAExpressions.select(qKlass.id)
-                     .from(qKlass)
-                     .where(qKlass.name.eq(klassName))
-             )).fetch();
-    }
 
     /**
      * 修改学生信息
